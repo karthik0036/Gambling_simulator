@@ -6,7 +6,9 @@ public class GamblingSImulator {
 	public void game() {
 		int wins = 0;
 		int loss = 0;
+		int bet = 1;
 		int totalAmount = 0;
+
 		for (int day = 1; day <= 20; day++) {
 			int stake = 100;
 			while (stake > 50 && stake < 150) {
@@ -26,15 +28,19 @@ public class GamblingSImulator {
 				wins++;
 				System.out.println("Day " + day + " Won ");
 			}
+			totalAmount = totalAmount + stake;
 		}
 
-		int finalAmount = wins * 50 - loss * 50;
-		if (finalAmount > 0)
-			System.out.println("After 20 days Gambler won: $ " + finalAmount);
-		else if (finalAmount < 0)
-			System.out.println("After 20 days Gambler lost: $ " + finalAmount);
-		else
+		if (totalAmount > 2000) {
+			int profitAmt = totalAmount - 2000;
+			System.out.println("After 20 days Gambler won: $ " + profitAmt);
+		} else if (totalAmount < 0) {
+			int lossAmt = 2000 - totalAmount;
+			System.out.println("After 20 days Gambler lost: $ " + lossAmt);
+		} else
 			System.out.println("No profit or loss ");
+
+		System.out.println("In this month " + wins + " Days Won. " + loss + " Days lost");
 	}
 
 	public static void main(String[] args) {
